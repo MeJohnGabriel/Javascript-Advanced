@@ -336,3 +336,4 @@ const total = bill + tip
 
 console.log(`The bill was $${bill}, the tip is $${tip} and the total was $${total}`)
 */
+
