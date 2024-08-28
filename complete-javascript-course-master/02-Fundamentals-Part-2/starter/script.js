@@ -78,3 +78,42 @@ const totalMaterial = material(21, 3)
 console.log(totalMaterial)
 */
 
+/*
+
+#FUNCTION DECLARATIONS:
+
+function calcAge(birthYear) {
+    const age = 2024 - birthYear
+    return age
+}
+const youAge = calcAge(2004)
+console.log(youAge)
+
+--> You can just return the calculation(expression):
+
+function calcAge(birthYear) {
+    return 2024 - birthYear
+}
+const yourAge = calcAge(2004)
+console.log(yourAge)
+
+#FUNCTION EXPRESSIONS:
+
+-->You can just return the calculation(expression) like above
+-->But I want to do with a variable:
+
+const calcAge2 = function (birthYear) {
+    const age = 2024 - birthYear
+    return age
+}
+const myAge = calcAge2(2004)
+console.log(myAge)
+
+*/
+
+const choosingTheNames = function (nam1, nam2) {
+    const babyNames = `Boy is ${nam1} , Girl is ${nam2}`
+    return babyNames
+}
+const choosenBabyNames = choosingTheNames("Alex", "Alicia")
+console.log(choosenBabyNames)
