@@ -109,11 +109,37 @@ const calcAge2 = function (birthYear) {
 const myAge = calcAge2(2004)
 console.log(myAge)
 
-*/
-
+MY EXAMPLE:
 const choosingTheNames = function (nam1, nam2) {
     const babyNames = `Boy is ${nam1} , Girl is ${nam2}`
     return babyNames
 }
 const choosenBabyNames = choosingTheNames("Alex", "Alicia")
 console.log(choosenBabyNames)
+*/
+
+const fruitCutter = function (fruit) {
+    return fruit * 4
+}
+function fruitProcessor(Kiwi, Pineaple) {
+    const KiwiPieces = fruitCutter(Kiwi)
+    const PineaplePieces = fruitCutter(Pineaple)
+
+    const juice = `The juice is made of ${KiwiPieces} Kiwi pieces and ${PineaplePieces} pieces Pineaple`
+    return juice
+}
+console.log(fruitProcessor(3, 4))
+
+
+const materialShare = function (material) {
+    return material / 2
+}
+function material(m1, m2) {
+    const sharedPencils = materialShare(m1)
+    const shareErasers = materialShare(m2)
+
+    const myMaterialNumber = `The student shared: ${sharedPencils} pencils and ${shareErasers} erasers`
+    return myMaterialNumber
+}
+
+console.log(material(8, 4))
