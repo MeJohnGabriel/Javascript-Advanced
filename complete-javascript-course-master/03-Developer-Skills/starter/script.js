@@ -202,3 +202,34 @@ const enhancedForecast = function (data1, data2) {
   // console.log(` --- ${str2} `);
 };
 enhancedForecast(arr_1, arr_2);
+
+//My
+const data1 = [17, 22, 35, 28, 23];
+const data2 = [24, 11, 40, 26];
+
+const tempCohersion = function (arr1, arr2) {
+  let result = '';
+  let result_2 = '';
+  for (let i = 0; i < arr1.length; i++) {
+    if ((9 / 5) * arr1[i] + 32 > 90) {
+      result += ` !! Warning hot temperature: ${
+        (9 / 5) * arr1[i] + 32
+      } at day ${i + 1} !! `;
+    } else if ((9 / 5) * arr1[i] + 32 <= 90) {
+      result += ` Current temperature: ${(9 / 5) * arr1[i] + 32}ºF |`;
+    }
+  }
+  for (let i = 0; i < arr2.length; i++) {
+    if (arr2[i] > 30) {
+      result_2 += ` Warnin hot temperature ${arr2[i]} at day ${i + 1} |  `;
+    } else if (arr2[i] <= 30) {
+      result_2 += ` Current temperature: ${(9 / 5) * arr2[i] + 32}ºF |`;
+    }
+  }
+
+  console.warn(`DATA #1.1`);
+  console.log(result);
+  console.warn(`DATA #1.2`);
+  console.log(result_2);
+};
+tempCohersion(data1, data2);
