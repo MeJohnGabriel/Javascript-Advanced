@@ -164,7 +164,7 @@ const printForecast = function (arr) {
   console.log(`... ${res}`);
 };
 printForecast(data1);
-*/
+
 
 //////////////////  My exercise #1
 
@@ -210,20 +210,26 @@ const data2 = [24, 11, 40, 26];
 const tempCohersion = function (arr1, arr2) {
   let result = '';
   let result_2 = '';
+
+  const FareheitCohersion = tempC => (9 / 5) * tempC + 32;
+
   for (let i = 0; i < arr1.length; i++) {
-    if ((9 / 5) * arr1[i] + 32 > 90) {
-      result += ` !! Warning hot temperature: ${
-        (9 / 5) * arr1[i] + 32
-      } at day ${i + 1} !! `;
-    } else if ((9 / 5) * arr1[i] + 32 <= 90) {
-      result += ` Current temperature: ${(9 / 5) * arr1[i] + 32}ºF |`;
+    const toFarenheit = FareheitCohersion(arr1[i]);
+    if (toFarenheit > 90) {
+      result += ` !! Warning hot temperature: ${toFarenheit} at day ${
+        i + 1
+      } !! `;
+    } else if (toFarenheit <= 90) {
+      result += ` Current temperature: ${toFarenheit}ºF |`;
     }
   }
+
   for (let i = 0; i < arr2.length; i++) {
-    if (arr2[i] > 30) {
-      result_2 += ` Warnin hot temperature ${arr2[i]} at day ${i + 1} |  `;
-    } else if (arr2[i] <= 30) {
-      result_2 += ` Current temperature: ${(9 / 5) * arr2[i] + 32}ºF |`;
+    const toFarenheit = FareheitCohersion(arr2[i]);
+    if (toFarenheit > 90) {
+      result_2 += ` Warnin hot temperature ${toFarenheit} at day ${i + 1} |  `;
+    } else if (toFarenheit <= 90) {
+      result_2 += ` Current temperature: ${toFarenheit}ºF |`;
     }
   }
 
@@ -233,3 +239,69 @@ const tempCohersion = function (arr1, arr2) {
   console.log(result_2);
 };
 tempCohersion(data1, data2);
+*/
+////////NEW EXERCISE
+
+//PROBLEMS
+/*
+1 -- Loops through each array.
+2 -- Calculates the average temperature for both cities.
+3 -- Logs if any day had an extreme temperature (above 35°C or below 5°C).
+4 -- Converts each temperature to Fahrenheit using the formula (tempC * 9/5) + 32 and logs it.
+EXPCTED OUTPUTS:
+City 1 Average Temperature: 25°C
+Day 2: Extremely hot at 36°C (96.8°F)
+City 2 Average Temperature: 18°C
+Day 5: Extremely cold at 4°C (39.2°F)
+*/
+const cityTemps1 = [16, 36, 25, 28, 33, 15, 9];
+const cityTemps2 = [8, 30, 39, 11, 3, 13, 38];
+
+console.log(`DATA #01`);
+
+const analyzeTemperatures = function (data1, data2) {
+  let sum1 = 0;
+  let sum2 = 0;
+
+  let str1 = '';
+  let str2 = '';
+
+  let accumulatorAverage1 = 0;
+  let accumulatorAverage2 = 0;
+
+  for (let i = 0; i < data1.length; i++) {
+    //sum1 = sum1 + data1[i];
+    sum1 += data1[i];
+    accumulatorAverage1 = sum1 / data1.length;
+    console.log(`${data1[i]}°C at day ${[i + 1]}`);
+
+    if (data1[i] > 30) {
+      str1 += ` Extremely hot temperature ${data1[i]} °C at day ${i + 1}  ||| `;
+    } else if (data1[i] <= 15) {
+      str1 += ` Extremely cold temperature ${data1[i]} °C at day ${i + 1} ||| `;
+    }
+  }
+  console.log(
+    `City 1 - Average temperature current week: ${accumulatorAverage1}`
+  );
+  console.log(str1);
+  console.log(`DATA #02`);
+
+  for (let i = 0; i < data2.length; i++) {
+    console.log(`${data2[i]}°C at day ${[i + 1]}`);
+    sum2 += data2[i];
+    accumulatorAverage2 = sum2 / data2.length;
+
+    if (data2[i] > 30) {
+      str2 += ` Extremely hot temperature ${data2[i]} at day ${i + 1} ||| `;
+    } else if (data2[i] < 30) {
+      str2 += ` Extremely cold temperature ${data2[i]} at day ${i + 1} ||| `;
+    }
+  }
+
+  console.log(
+    `City 2 - Average temperature of current week: ${accumulatorAverage2}`
+  );
+  console.log(str2);
+};
+analyzeTemperatures(cityTemps1, cityTemps2);
