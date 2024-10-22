@@ -12,6 +12,15 @@ document.querySelector('.guess').value = 12;
 */
 
 /////generating the secret number:
+const displayMsg = function (message) {
+  document.querySelector('.message').textContent = message;
+};
+const styleNumber = function (number) {
+  document.querySelector('.number').style.width = number;
+};
+const displayScore = function (score) {
+  document.querySelector('.score').textContent = score;
+};
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 //(CHEATING CODE)console.log(secretNumber);
@@ -26,44 +35,42 @@ document.querySelector('.check').addEventListener('click', function () {
   //this first if says "everything different than a true value will show this message"
 
   if (!guess) {
-    document.querySelector('.message').textContent = `No number detected🚫`;
-
+    noNumber(`[ERROR]No number detected`);
     ///When the player wins the correct number.
   } else if (guess === secretNumber) {
     document.querySelector('.number').textContent = secretNumber;
-    document.querySelector('.message').textContent = `Correct Number🎉`;
+    displayMsg(`Correct Number🎉`);
     document.querySelector('body').style.backgroundColor = '#60b347';
-    document.querySelector('.number').style.width = `25rem`;
-    document.querySelector('.number').style.fontSize = `7rem`;
+    styleNumber(`25rem`);
+    styleNumber(`7rem`);
     if (score > highscore) {
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
     }
-    ///When guess is too high
-  } else if (guess > secretNumber) {
+    ///When guess is too high or too low
+  } else if (guess !== secretNumber) {
     ///This is for the score counter hits zero(and not keep adding negative numbers)
     if (score > 1) {
-      document.querySelector('.message').textContent = `Too high!⬆️`;
+      displayMsg(guess > secretNumber ? `Too high!⬆️` : `Too low!⬇️`)
       score--;
-      document.querySelector('.score').textContent = score;
+      displayScore(score);
     } else {
-      document.querySelector('.message').textContent = `You lost!`;
-      document.querySelector('.score').textContent = 0;
+      displayMsg(`You lost!`);
+     displayScore(score) = 0;
     }
-
-    ///When guess is too low
-  } else if (guess < secretNumber) {
-    ///This is for the score counter hits zero(and not keep adding negative numbers)
+  }
+});
+///// old version to check if the number is too low
+/*else if (guess < secretNumber)
     if (score > 1) {
-      document.querySelector('.message').textContent = `Too low!⬇️`;
+      document.querySelector('.message').textContent = ;
       score--;
       document.querySelector('.score').textContent = score;
     } else {
       document.querySelector('.message').textContent = `You lost!❌`;
       document.querySelector('.score').textContent = 0;
-    }
-  }
-});
+    }*/
+
 ///Reseting everything using "location.reload"
 document.querySelector('.again').addEventListener('click', function () {
   //you could simply reload the page(BUT if you do that the highscore will be reseted)
