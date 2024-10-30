@@ -41,8 +41,8 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').textContent = secretNumber;
     displayMsg(`Correct Number🎉`);
     document.querySelector('body').style.backgroundColor = '#60b347';
-    styleNumber(`25rem`);
-    styleNumber(`7rem`);
+    styleNumber(style.width = `25rem`);
+    styleNumber(style.fontsize = `7rem`);
     if (score > highscore) {
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
