@@ -1,5 +1,5 @@
 'use strict';
-
+/*v1 of the modal window
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btn = document.querySelectorAll('.show-modal');
@@ -35,9 +35,28 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
    exitModalWindow();
   }
-   */
+   
   //////Course solution:
   if (e.key === 'Escape' || !modal.classList.contains('hidden')) {
     exitModalWindow();
   }
 });
+*/
+
+const OpenBttns = document.querySelectorAll('.show-modal');
+const closeBttns = document.querySelector('.close-modal');
+const modalWindow = document.querySelector('.modal');
+
+const openModalWidow = function () {
+  modalWindow.classList.remove('hidden');
+};
+
+const exitModalWindow = function () {
+  modalWindow.classList.add('hidden');
+};
+
+for (let i = 0; i < OpenBttns.length; i++) {
+  OpenBttns[i].addEventListener('click', openModalWidow);
+}
+
+closeBttns.addEventListener('click', exitModalWindow);
