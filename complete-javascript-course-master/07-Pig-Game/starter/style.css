@@ -24,6 +24,7 @@ body {
 
 /* LAYOUT */
 main {
+  flex-shrink: 1;
   position: relative;
   width: 100rem;
   height: 60rem;
@@ -48,7 +49,7 @@ main {
 /* ELEMENTS */
 .name {
   position: relative;
-  font-size: 4rem;
+  font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   word-spacing: 2px;
@@ -82,8 +83,8 @@ main {
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
-  width: 65%;
-  padding: 2rem;
+  width: 91%;
+  padding: 1rem;
   text-align: center;
   transition: all 0.75s;
 }
@@ -130,13 +131,18 @@ main {
 }
 
 .btn--new {
-  top: 4rem;
+  top: 2rem;
+  font-size: 1em;
+  text-align: center;
+  width: 20vw;
 }
 .btn--roll {
   top: 39.3rem;
+  width: 20vw;
+  padding: 10px;
 }
 .btn--hold {
-  top: 46.1rem;
+  top: 48.1rem;
 }
 
 .btn:active {
