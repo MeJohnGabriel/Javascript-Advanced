@@ -12,7 +12,7 @@ const diceElement = document.querySelector('.dice');
 const newGameButtonElement = document.querySelector('.btn--new');
 const rollDiceButtonElement = document.querySelector('.btn--roll');
 const holdButtonElement = document.querySelector('.btn--hold');
-
+// PUT it as DEAFEULT VARIABLES
 let scores, currentScore, activePlayer, playing;
 //Starting conditions
 const init = function () {
@@ -33,6 +33,7 @@ const init = function () {
   player0EL.classList.add('player--active');
   player1EL.classList.remove('player--active');
 };
+// CALLING THE FUNCTION SO IT'S ALREADY WORKING WHEN THE USER OPENS THE GAME
 init();
 
 // this is going to work like a switch: if activeplayer is 0(player--0) "and the number ONE"(else
@@ -41,7 +42,7 @@ init();
 const switchPlayer = function () {
   activePlayer = activePlayer === 0 ? 1 : 0;
   document.getElementById(`current--${activePlayer}`).textContent = 0;
-  currentScore = 0;
+  // currentScore = 0;
   player0EL.classList.toggle('player--active');
   player1EL.classList.toggle('player--active');
   console.log(`Now its player ${activePlayer}'s turn`);
@@ -67,7 +68,7 @@ rollDiceButtonElement.addEventListener('click', function () {
       //Changin the currentScore by player, in this case player 1
       document.getElementById(`current--${activePlayer}`).textContent =
         currentScore;
-      console.log(`still player ${activePlayer}`);
+      console.log(`still player--${activePlayer}`);
     } else {
       //Switch players
       switchPlayer();
@@ -79,7 +80,7 @@ holdButtonElement.addEventListener('click', function () {
   if (playing) {
     // 1. Add current score to active player's score
     // scores will be like: scores[0] or scores[1] because the activePlayer that switches like that
-    // line 65, will sum the currentscore with the score in the current position of the array score
+    //will sum the currentscore with the score in the current position of the array score
     scores[activePlayer] += currentScore; // --> scores[1] = scores[1] + currentScore
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
