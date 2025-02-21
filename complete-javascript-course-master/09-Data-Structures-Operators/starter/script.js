@@ -26,4 +26,52 @@ const restaurant = {
       close: 24,
     },
   },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  // MY PRACTICE
+  locationSel: function (catIndex) {
+    return [this.categories[catIndex]];
+  },
 };
+// MY PRACTICE
+const [begin] = restaurant.locationSel(0);
+console.log(begin);
+// HOW to receive two return values from a function
+const [starter, main] = restaurant.order(2, 0);
+console.log(starter, main);
+
+/*-------- W/OUT DESTRUCTURING
+const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+console.log(a, b, c);
+
+/-------- W/ DESTRUCTURING
+const [x, y, z] = arr;
+
+/*
+let [main, , secondary] = restaurant.categories;
+
+ ----- WE WANT TO INVERT THE ELEMENTS FIRST: WITHOUT DESTRUC
+console.log(main, secondary);
+const temp = main;
+main = secondary;
+secondary = temp;
+console.log(main, secondary);
+
+
+//  ---- WE WANT TO INVERT THE ELEMENTS NOW: WITHDESTRUC
+
+console.log(main, secondary);
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
+*/
+
+/* MY PRACTICE 
+let [, , , main, secondary] = restaurant.categories;
+// you are reassing the main and secondary elements in the array in order for them to be inverted
+[, , main, secondary] = [, , secondary, main];
+console.log(main, secondary);
+*/
