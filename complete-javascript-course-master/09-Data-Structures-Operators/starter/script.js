@@ -26,22 +26,34 @@ const restaurant = {
       close: 24,
     },
   },
-  order: function (starterIndex, mainIndex) {
+  order: function ({ starterIndex, mainIndex }) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderDelivery: function (obj) {
-    console.log(obj);
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
   },
   // MY PRACTICE
   locationSel: function (catIndex) {
     return [this.categories[catIndex]];
   },
 };
+
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 11',
   mainIndex: 2,
   starterIndex: 2,
+});
+
+restaurant.orderDelivery({
+  address: 'Praga ul Dolce, 21',
 });
 
 // ------ DESTRUCTURING OBJECTS
