@@ -7,9 +7,10 @@ const flights =
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  location: ['Via Angelo Tavanti, 23', 'Firenze Italy Street, 21'],
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  drinksMenu: ['Cola', 'Sprite', 'Orange Juice', 'Grape Juice', 'Tea'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   openingHours: {
@@ -34,27 +35,68 @@ const restaurant = {
     mainIndex = 0,
     time = '20:00',
     address,
+    locationIndex,
   }) {
     console.log(
-      `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+      `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered from ${this.location[locationIndex]} to ${address} at ${time}`
     );
   },
-  // MY PRACTICE
+  // My practice
   locationSel: function (catIndex) {
     return [this.categories[catIndex]];
   },
+  orderPasta: function (ingredient1, ingredient2, ingredient3) {
+    console.log(
+      `Three ingredients of your pasta are: ${ingredient1} , ${ingredient2} and ${ingredient3} `
+    );
+  },
+  orderingDrink: function (quantity, drinkIndex) {
+    if (quantity > 1) {
+      console.log(`You choose ${quantity} ${this.drinksMenu[drinkIndex]}s`);
+    } else if (quantity === 1) {
+      console.log(`You choose ${quantity} ${this.drinksMenu[drinkIndex]}`);
+    } else {
+      console.log(`[ERROR]Insert a valid quantity`);
+    }
+  },
 };
+const drinkSelection = [
+  prompt('How many drinks?'),
+  prompt('Select the index(1-4):'),
+];
+restaurant.orderingDrink(...drinkSelection);
+/* REAL WORLD EXAMPLE
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt("Let's make pasta! Ingredient 2?"),
+  prompt("Let's make pasta! Ingredient 3?"),
+];
+// >>>>>HOW TO CALL THE ARRAY IN THE OLD WAY
+// restaurant.orderPasta(ingredients[0], ingredients[1] ,  ingredients[2]);
+// >>>>> IN THE NEW WAY NOW
+restaurant.orderPasta(...ingredients);
+*/
 
+// SPREAD OPERATOR IN OBJECTS
+const newRestaurant = { founding: 1998, ...restaurant, founder: 'Guisap' };
+console.log(newRestaurant);
+// shallow copy with spread in obejcts
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurant);
+console.log(restaurantCopy);
+/*
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 11',
   mainIndex: 2,
   starterIndex: 2,
+  locationIndex: 1,
 });
 
 restaurant.orderDelivery({
   address: 'Praga ul Dolce, 21',
-});
+})
 
 // ------ DESTRUCTURING OBJECTS
 const { name, openingHours, categories } = restaurant;
@@ -67,10 +109,11 @@ console.log(menu, starters);
 // Mutating variables
 let a = 111;
 let b = 99;
+let c = 19;
 const obj = { a: 23, b: 7, c: 14 };
 
-({ a, b } = obj);
-console.log(a, b);
+({ a, b, c } = obj);
+console.log(a, b, c);
 
 // Nested objects
 const {
@@ -83,7 +126,7 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o,c );
-*/
+
 
 // ------IF WE WANT TO CHANGE THE VARIABLES NAME
 const {
@@ -92,7 +135,7 @@ const {
   categories: tags,
 } = restaurant;
 console.log(restaurantName, hours, tags);
-/* -----DESTRUCTURING ARRAYS >>>> MY PRACTICE
+ -----DESTRUCTURING ARRAYS >>>> MY PRACTICE
 const [begin] = restaurant.locationSel(0);
 console.log(begin);
 // HOW to receive two return values from a function
@@ -147,3 +190,36 @@ let [, , , main, secondary] = restaurant.categories;
 [, , main, secondary] = [, , secondary, main];
 console.log(main, secondary);
 */
+
+// ######## SPREAD OPERATOR ############
+// NOT A GOOD WAY TO GET VALUE OUT FROM ANOTHER ARR INTO THE OTHER ONE
+const arr = [7, 8, 9];
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArray);
+
+// A GOOD WAY USING THE | SPREAD OPERATOR: ... |
+const newGoodArray = [1, 2, ...arr];
+console.log(newGoodArray);
+console.log(...newGoodArray);
+
+// WE ARE NOT MANIPULATING THE mainMenu ARRAY THIS A NEW ARRAY WITH THE EXPANDING INFO FROM THE mainMenu ARR
+const newMenu = [...restaurant.mainMenu, 'Pasta'];
+console.log(newMenu);
+
+// >>>>> Copying array w/ spread operator
+const copyMainMenu = [...restaurant.mainMenu];
+console.log(copyMainMenu);
+
+// >>>>>> Merge 2(or+) arrays together
+// my way
+// const merging = [...restaurant.mainMenu.concat(restaurant.starterMenu)];
+// jonas's way
+const merging = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(merging);
+
+// WE CAN UNPACK ALL ITERABLES FOR EXAMPLE: STRING
+const str = 'Jona';
+const letters = [...str, 's'];
+console.log(letters);
+console.log(...str);
+// console.log(`${...str} Schmedtmann`) THIS DOESNT WORK CAUSE THE '${}' DOESNT WORK W/ MULTIPLE VALUES SEPARATED BY A COMMA
