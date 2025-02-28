@@ -1,5 +1,5 @@
 'use strict';
-
+// SUMMARY :  DESTRUCTURING , SPREAD OPERATOR, REST OPERATOR
 // Data needed for a later exercise
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
@@ -9,9 +9,9 @@ const restaurant = {
   name: 'Classico Italiano',
   location: ['Via Angelo Tavanti, 23', 'Firenze Italy Street, 21'],
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   drinksMenu: ['Cola', 'Sprite', 'Orange Juice', 'Grape Juice', 'Tea'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto', 'PAPA'],
 
   openingHours: {
     thu: {
@@ -50,6 +50,7 @@ const restaurant = {
       `Three ingredients of your pasta are: ${ingredient1} , ${ingredient2} and ${ingredient3} `
     );
   },
+  // My practice
   orderingDrink: function (quantity, drinkIndex) {
     if (quantity > 1) {
       console.log(`You choose ${quantity} ${this.drinksMenu[drinkIndex]}s`);
@@ -60,6 +61,23 @@ const restaurant = {
     }
   },
 };
+// SPREAD IS DONE ON THE RIGHT SIDE OF THE ASSIGN OPERATOR =
+const arr = [1, 2, ...[3, 4]];
+
+// REST IS DONE ON THE LEFT SIDE OF THE ASSING OPERATOR
+const [a, b, ...rest] = [1, 2, 3, 4, 5];
+console.log(a, b, rest);
+
+const [first, , third, ...restOfTheFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(first, third, restOfTheFood);
+// REST IN OBJECTS
+// >>>>>REVIEW you can take a property with the exact same name
+const { sat, ...restWeekDays } = restaurant.openingHours;
+console.log(sat, restWeekDays);
+/*My practice
 const drinkSelection = [
   prompt('How many drinks?'),
   prompt('Select the index(1-4):'),
@@ -75,7 +93,7 @@ const ingredients = [
 // restaurant.orderPasta(ingredients[0], ingredients[1] ,  ingredients[2]);
 // >>>>> IN THE NEW WAY NOW
 restaurant.orderPasta(...ingredients);
-*/
+
 
 // SPREAD OPERATOR IN OBJECTS
 const newRestaurant = { founding: 1998, ...restaurant, founder: 'Guisap' };
@@ -85,7 +103,7 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurant);
 console.log(restaurantCopy);
-/*
+
 restaurant.orderDelivery({
   time: '22:30',
   address: 'Via del Sole, 11',
@@ -166,7 +184,7 @@ console.log(a, b, c);
 const [x, y, z] = arr;
 console.log(x, y, z);
 
-/*
+
 let [main, , secondary] = restaurant.categories;
 
  ----- WE WANT TO INVERT THE ELEMENTS FIRST: WITHOUT DESTRUC
@@ -189,7 +207,7 @@ let [, , , main, secondary] = restaurant.categories;
 // you are reassing the main and secondary elements in the array in order for them to be inverted
 [, , main, secondary] = [, , secondary, main];
 console.log(main, secondary);
-*/
+
 
 // ######## SPREAD OPERATOR ############
 // NOT A GOOD WAY TO GET VALUE OUT FROM ANOTHER ARR INTO THE OTHER ONE
@@ -223,3 +241,4 @@ const letters = [...str, 's'];
 console.log(letters);
 console.log(...str);
 // console.log(`${...str} Schmedtmann`) THIS DOESNT WORK CAUSE THE '${}' DOESNT WORK W/ MULTIPLE VALUES SEPARATED BY A COMMA
+*/
