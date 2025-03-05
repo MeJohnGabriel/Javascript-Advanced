@@ -50,7 +50,7 @@ const restaurant = {
       `Three ingredients of your pasta are: ${ingredient1} , ${ingredient2} and ${ingredient3} `
     );
   },
-  // My practice
+  // My practice 80
   orderingDrink: function (quantity, drinkIndex) {
     if (quantity > 1) {
       console.log(`You choose ${quantity} ${this.drinksMenu[drinkIndex]}s`);
@@ -60,8 +60,14 @@ const restaurant = {
       console.log(`[ERROR]Insert a valid quantity`);
     }
   },
+  orderPizza: function (mainIngredients, ...restIgredients) {
+    console.log(
+      `(Main igrendient): ${mainIngredients} (extras): ${restIgredients}`
+    );
+  },
 };
 // SPREAD IS DONE ON THE RIGHT SIDE OF THE ASSIGN OPERATOR =
+// Destructuring
 const arr = [1, 2, ...[3, 4]];
 
 // REST IS DONE ON THE LEFT SIDE OF THE ASSING OPERATOR
@@ -73,11 +79,31 @@ const [first, , third, ...restOfTheFood] = [
   ...restaurant.starterMenu,
 ];
 console.log(first, third, restOfTheFood);
+
 // REST IN OBJECTS
 // >>>>>REVIEW you can take a property with the exact same name
 const { sat, ...restWeekDays } = restaurant.openingHours;
 console.log(sat, restWeekDays);
-/*My practice
+
+// ---Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    // sum = sum + numbers[i];
+    sum += numbers[i];
+  }
+  //   get last interaction
+  console.log(sum);
+};
+add(2, 3);
+add(3, 4, 6, 7);
+add(3, 4, 6, 7, 9, 10);
+const x = [23, 5, 2];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+
+/*My practice 54 (spread)
 const drinkSelection = [
   prompt('How many drinks?'),
   prompt('Select the index(1-4):'),
