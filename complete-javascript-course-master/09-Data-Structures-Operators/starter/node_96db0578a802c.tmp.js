@@ -1,5 +1,5 @@
 'use strict';
-// SUMMARY :  DESTRUCTURING , SPREAD OPERATOR, REST OPERATOR , OR and AND OPERATOR , NULLISH OPERATOR , LOGICAL ASSIGNMENT OPERATORS, FOR OF LOOP
+// SUMMARY :  DESTRUCTURING , SPREAD OPERATOR, REST OPERATOR , OR and AND OPERATOR , NULLISH OPERATOR , LOGICAL ASSIGNMENT OPERATORS
 // Data needed for a later exercise
 
 const flights =
@@ -463,32 +463,11 @@ const printOds = function () {
   team1 > team2 && console.log(`Team 2 (odds: ${team2}) is more likely to win`);
 };
 printOds();
+*/
 
-
-// FOR OF LOOP
-console.log('---FOR OF LOOP---');
 const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
 for (const item of menu) console.log(item);
 
-//getting the index together with the element
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
+for (let i = 0; i < menu.length; i++) {
+  console.log(menu[i]);
 }
-//getting the index together with the element with destructuring
-console.log(`---WITH DESTRUCTURING---`);
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-}
-console.log([...menu.entries()]);
-
-//extra practice
-const arraytest = ['Bro', 'Chico', 'Carro'];
-for (const [text, i] of arraytest.entries()) {
-  console.log(text, i);
-}
-console.log([...arraytest.entries()]);
-// console.log('---REGULAR LOOP---');
-// for (let i = 0; i < menu.length; i++) {
-//   console.log(menu[i]);
-// }
-*/
