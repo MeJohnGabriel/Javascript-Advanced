@@ -1,11 +1,43 @@
 'use strict';
-// SUMMARY :  DESTRUCTURING , SPREAD OPERATOR, REST OPERATOR , OR and AND OPERATOR , NULLISH OPERATOR , LOGICAL ASSIGNMENT OPERATORS, FOR OF LOOP
+/* SUMMARY : 
+
+---> DESTRUCTURING , 
+---> SPREAD OPERATOR, 
+---> REST OPERATOR ,
+---> OR and AND OPERATOR ,
+---> NULLISH OPERATOR , 
+---> LOGICAL ASSIGNMENT OPERATORS,
+---> FOR OF LOOP, 
+---> ENHANCED OBJECT LITERALS, 
+---> OPTIONAL CHAINING,
+
+*/
+
 // Data needed for a later exercise
 
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
+const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  // tue
+  [weekDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  // thu
+  [weekDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  // wed
+  [weekDays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+// console.log(openingHours);
 const restaurant = {
   name: 'Classico Italiano',
   location: ['Via Angelo Tavanti, 23', 'Firenze Italy Street, 21'],
@@ -13,24 +45,18 @@ const restaurant = {
   drinksMenu: ['Cola', 'Sprite', 'Orange Juice', 'Grape Juice', 'Tea'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto', 'PAPA'],
+  // ----ENHANCED OBJECT LITERALS
+  //getting object outside another --- (old way)
+  openingHours: openingHours,
+  //new way ----
+  openingHours,
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  order: function ({ starterIndex, mainIndex }) {
+  // enhanced methods
+  // new way ---- GET RID OF "function" and ":"
+  order({ starterIndex, mainIndex }) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  // old way --------
   orderDelivery: function ({
     starterIndex = 1,
     mainIndex = 0,
@@ -68,6 +94,62 @@ const restaurant = {
   },
 };
 
+//>>>> FOR OF LOOP IN OBJECTS
+// looping the properties
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day},`;
+}
+console.log(openStr);
+
+// looping the property values
+
+const values = Object.values(openingHours);
+console.log(values);
+
+// entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+/*>>>>>> OPTIONAL CHAINING
+
+// Without optional chaining - error
+// console.log(restaurant.openingHours.mon.open);
+
+// With optional chaining - undefined
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+
+  const openTime = openingHours[day]?.open ?? 'no time';
+  console.log(`On ${day} we open at ${openTime}`);
+  // if (openTime) {
+  //   console.log(`On ${day} we open at ${openTime}`);
+  // } else {
+  //   console.log(`On ${day} we are closed`);
+  // }
+}
+
+//>> Methods(optional chaining works with methods too)
+
+// this example the method ORDER does exist
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+
+// this example the method ORDERRISOTO does NOT exist
+console.log(restaurant.orderRisoto?.(0, 1) ?? 'Method does not exist');
+
+//>> Arrays(optional chaining works with Arrays too)
+const users = [{ name: 'John', email: 'john@gmail.com.io' }];
+console.log(users[0]?.name ?? 'Users array is empty');
 /*
 const rest1 = {
   name: 'Capri',
