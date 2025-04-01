@@ -10,6 +10,7 @@
 ---> FOR OF LOOP, 
 ---> ENHANCED OBJECT LITERALS, 
 ---> OPTIONAL CHAINING,
+---> FOR OF LOOP OBJECTS,
 
 */
 
@@ -94,7 +95,7 @@ const restaurant = {
   },
 };
 
-//>>>> FOR OF LOOP IN OBJECTS
+/*>>>> FOR OF LOOP IN OBJECTS
 // looping the properties
 
 const properties = Object.keys(openingHours);
@@ -115,6 +116,10 @@ console.log(values);
 const entries = Object.entries(openingHours);
 console.log(entries);
 
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+  */
 /*>>>>>> OPTIONAL CHAINING
 
 // Without optional chaining - error
@@ -574,3 +579,95 @@ console.log([...arraytest.entries()]);
 //   console.log(menu[i]);
 // }
 */
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's continue with our football betting app!
+
+1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+GOOD LUCK 😀
+*/
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1
+const goalScored = Object.entries(game.scored);
+console.log(`--Scored Goals--`);
+for (const [goal, player] of goalScored) {
+  console.log(`Goal ${Number(goal) + 1}: ${player}`);
+}
+console.log(`---Game Odds---`);
+
+// 2
+const gameOdds = Object.values(game.odds);
+
+let sum = 0;
+let averageOdd = 0;
+
+for (const x of gameOdds) {
+  // in each interaction of the loop it will get sum and add x(1st: x--> 0 + 1.33 = 1.33 , 2nd: x--> 1.33 + 3.25= 4.58 , 3th: x--> 4.58 + 6.5 = 11.08)
+  sum += x;
+  averageOdd = sum / gameOdds.length;
+}
+console.log(`The average odd of the games are: ${averageOdd}`);
+
+// 3
+const gameOddsWithTeams = Object.entries(game.odds);
+for (const [team1, odd] of gameOddsWithTeams) {
+  console.log(team1, odd);
+}
