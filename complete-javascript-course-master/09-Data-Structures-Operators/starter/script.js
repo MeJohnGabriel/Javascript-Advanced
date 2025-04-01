@@ -655,7 +655,7 @@ console.log(`---Game Odds---`);
 
 // 2
 const gameOdds = Object.values(game.odds);
-
+/* my way
 let sum = 0;
 let averageOdd = 0;
 
@@ -665,9 +665,24 @@ for (const x of gameOdds) {
   averageOdd = sum / gameOdds.length;
 }
 console.log(`The average odd of the games are: ${averageOdd}`);
+*/
+console.log(gameOdds);
+
+let avg = 0;
+
+for (const odd of gameOdds) avg = avg + odd;
+avg = avg / gameOdds.length;
+console.log(avg);
 
 // 3
+
 const gameOddsWithTeams = Object.entries(game.odds);
-for (const [team1, odd] of gameOddsWithTeams) {
-  console.log(team1, odd);
+console.log(gameOddsWithTeams);
+console.log('');
+console.log('');
+console.log('');
+
+for (const [key, odds] of gameOddsWithTeams) {
+  const teamStr = key === 'x' ? 'draw' : `victory ${game[key]}`;
+  console.log(`Odd of ${teamStr}: ${odds}`);
 }
