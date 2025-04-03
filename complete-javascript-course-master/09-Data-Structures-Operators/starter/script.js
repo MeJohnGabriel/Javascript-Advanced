@@ -11,6 +11,7 @@
 ---> ENHANCED OBJECT LITERALS, 
 ---> OPTIONAL CHAINING,
 ---> FOR OF LOOP OBJECTS,
+---> SETS AND MAPS
 
 */
 
@@ -21,6 +22,7 @@ const flights =
 
 // Data needed for first part of the section
 const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
 const openingHours = {
   // tue
   [weekDays[3]]: {
@@ -95,7 +97,98 @@ const restaurant = {
   },
 };
 
-/*>>>> FOR OF LOOP IN OBJECTS
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon Portugal'));
+
+/*
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+//ES2025 make sets more useful!(more methods)
+
+// get same elements
+const commonFoods = italianFoods.intersection(mexicanFoods);
+console.log('Intersection: ', commonFoods);
+console.log([...commonFoods]);
+
+// fuse elements
+const italianAndMexicanFood = italianFoods.union(mexicanFoods);
+console.log('Union: ', italianAndMexicanFood);
+
+// other ways of uniting elements
+console.log(new Set([...italianFoods, ...mexicanFoods]));
+// converting set back to an array
+console.log([new Set([...italianFoods, ...mexicanFoods])]);
+
+// diference method
+const italianUnique = italianFoods.difference(mexicanFoods);
+console.log('Diference italian: ', italianUnique);
+
+const mexicanUnique = mexicanFoods.difference(italianFoods);
+console.log('Diference Mexican: ', mexicanUnique);
+
+const italianAndMexicanUniques = italianFoods.symmetricDifference(mexicanFoods);
+console.log(italianAndMexicanUniques);
+
+// check if a set is completly different from another set
+console.log(italianFoods.isDisjointFrom(mexicanFoods));
+
+/*
+// --------SETS
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(orderSet);
+
+// Getting the size of a set
+console.log(orderSet.size);
+
+// Checking if a element exists in a set
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+
+// Adding new elements into a set
+// it doesnt matter that we have 2 orders w/ same name sets are unique so it will only be logged one 'Garlic bread' into the console
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+console.log(orderSet);
+
+// Deleting an element from a set
+orderSet.delete('Pizza');
+console.log(orderSet);
+
+// looping over a set
+for (const order of orderSet) console.log(order);
+//Deleting all elements from a set
+// orderSet.clear();
+// console.log(orderSet);
+
+// Example - how to convert set --> array - use brackets and spread
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+>>>> FOR OF LOOP IN OBJECTS
 // looping the properties
 
 const properties = Object.keys(openingHours);
@@ -602,7 +695,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
       }
 
 GOOD LUCK 😀
-*/
+
 
 const game = {
   team1: 'Bayern Munich',
@@ -665,7 +758,7 @@ for (const x of gameOdds) {
   averageOdd = sum / gameOdds.length;
 }
 console.log(`The average odd of the games are: ${averageOdd}`);
-*/
+
 console.log(gameOdds);
 
 let avg = 0;
@@ -686,3 +779,4 @@ for (const [key, odds] of gameOddsWithTeams) {
   const teamStr = key === 'x' ? 'draw' : `victory ${game[key]}`;
   console.log(`Odd of ${teamStr}: ${odds}`);
 }
+*/
