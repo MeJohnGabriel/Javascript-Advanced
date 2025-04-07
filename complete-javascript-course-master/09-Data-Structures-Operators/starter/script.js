@@ -96,13 +96,81 @@ const restaurant = {
     );
   },
 };
+// Maps: Interation
+const question = new Map([
+  ['question', 'What is the best proggramming Language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again!'],
+]);
+console.log(question);
 
+// Convert Object to map
+console.log('--Object Entries Comparisson--');
+console.log(Object.entries(openingHours));
+console.log('--Converting an Object into a Map--');
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Quiz app
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}:  ${value}`);
+  }
+}
+const userAnswer = Number(prompt('Your answer'));
+console.log(userAnswer);
+
+// Convert map into an Array
+console.log([...question]);
+// console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
+/*
+
+if (userAnswer === 3) {
+  window.alert(question.get(true));
+} else {
+  window.alert(question.get(false));
+}*/
+console.log(question.get(question.get('correct') === userAnswer));
+/* Maps: Fundamentals
 const rest = new Map();
 rest.set('name', 'Classico Italiano');
 rest.set(1, 'Firenze, Italy');
 console.log(rest.set(2, 'Lisbon Portugal'));
 
-/*
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegeterian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed');
+
+//GET - Read data from a Map
+console.log(rest.get('name'));
+console.log(rest.get(true));
+
+const time = 13;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// Check
+console.log(rest.has('categories'));
+
+//Delete
+rest.delete(2);
+
+// Arrays
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest.get(arr));
+
+
 const italianFoods = new Set([
   'pasta',
   'gnocchi',
