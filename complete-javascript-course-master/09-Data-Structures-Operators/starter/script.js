@@ -96,6 +96,78 @@ const restaurant = {
     );
   },
 };
+//CHALLENGE #3
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'], //illegal
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1
+console.log('---Question 1---');
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2
+console.log('');
+console.log('---Question 2---');
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//3
+console.log('');
+console.log('---Question 3---');
+
+const avgEvent = [...gameEvents.keys()].pop();
+console.log(
+  `An event happened, on average , every ${avgEvent / gameEvents.size} minutes `
+);
+
+// course way
+console.log(
+  `An event happened, on average , every ${90 / gameEvents.size} minutes `
+);
+
+// 4
+console.log('');
+
+console.log('---Question 4---');
+
+for (const [min, event] of gameEvents) {
+  if (min <= 45) {
+    console.log(`FIRST HALF [${[min]}] : `, event);
+  } else if (min > 45) console.log(`SECOND HALF [${[min]}] : `, event);
+}
+
+console.log('');
+console.log('---Question 4 course solution---');
+
+for (const [min, event] of gameEvents) {
+  const halfStr = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`${halfStr} HALF [${min}]: ${event}`);
+}
+/*
 // Maps: Interation
 const question = new Map([
   ['question', 'What is the best proggramming Language in the world?'],
@@ -122,7 +194,8 @@ for (const [key, value] of question) {
     console.log(`Answer ${key}:  ${value}`);
   }
 }
-const userAnswer = Number(prompt('Your answer'));
+// const userAnswer = Number(prompt('Your answer'));
+const userAnswer = 3;
 console.log(userAnswer);
 
 // Convert map into an Array
@@ -130,13 +203,13 @@ console.log([...question]);
 // console.log(question.entries());
 console.log([...question.keys()]);
 console.log([...question.values()]);
-/*
+
 
 if (userAnswer === 3) {
   window.alert(question.get(true));
 } else {
   window.alert(question.get(false));
-}*/
+}
 console.log(question.get(question.get('correct') === userAnswer));
 /* Maps: Fundamentals
 const rest = new Map();
