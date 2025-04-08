@@ -12,7 +12,7 @@
 ---> OPTIONAL CHAINING,
 ---> FOR OF LOOP OBJECTS,
 ---> SETS AND MAPS
-
+--->WORKING WITH STRINGS
 */
 
 // Data needed for a later exercise
@@ -96,6 +96,23 @@ const restaurant = {
     );
   },
 };
+
+//>>>>>>>>>>> STRINGS
+
+const airLine = 'TAP Air Brazil';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airLine.length);
+console.log('B737'.length);
+
+console.log(airLine.indexOf('r'));
+console.log(airLine.indexOf('Brazil'));
+console.log(airLine.lastIndexOf('r'));
 //CHALLENGE #3
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
@@ -107,7 +124,7 @@ Let's continue with our football betting app! This time, we have a map with a lo
       [FIRST HALF] 17: ⚽️ GOAL
 
 GOOD LUCK 😀
-*/
+
 
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
