@@ -113,7 +113,30 @@ console.log('B737'.length);
 console.log(airLine.indexOf('r'));
 console.log(airLine.indexOf('Brazil'));
 console.log(airLine.lastIndexOf('r'));
-//CHALLENGE #3
+
+console.log(airLine.slice(4));
+console.log(airLine.slice(4, 7));
+console.log(airLine.slice(0, airLine.indexOf(' ')));
+console.log(airLine.slice(airLine.lastIndexOf(' ') + 1));
+
+console.log(airLine.slice(-2));
+console.log(airLine.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  const seats = seat.slice(-1);
+  if (seats === 'B' || seats === 'E') {
+    console.log(`The seat ${seat} is in the middle`);
+  } else {
+    console.log(`The seat ${seat} is NOT in the middle`);
+  }
+};
+checkMiddleSeat('33B');
+checkMiddleSeat('32E');
+checkMiddleSeat('32C');
+
+console.log(new String('Jonas'));
+console.log(typeof new String('Jonas').slice(-1));
+//CHALLENGE #3/
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
