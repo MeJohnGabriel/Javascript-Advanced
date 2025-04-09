@@ -97,6 +97,7 @@ const restaurant = {
   },
 };
 
+/*
 //>>>>>>>>>>> STRINGS
 
 const airLine = 'TAP Air Brazil';
@@ -227,7 +228,35 @@ const checkBaggage = function (items) {
 checkBaggage('I got a laptop and a Pocket Knife');
 checkBaggage('I got socks and a camera');
 checkBaggage('I got a gun');
+*/
+
+// Split method
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Johnny Blaze'.split(' '));
+
+const [firstName, LastName] = 'Johnny Blaze'.split(' ');
+console.log(firstName, LastName);
+
+const newName = ['Mr.', firstName, LastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const nameArray = name.toLowerCase().split(' ');
+  const namesUppered = [];
+
+  for (const names of nameArray) {
+    console.log(names);
+    // namesUppered.push(names[0].toUpperCase() + names.slice(1));
+    namesUppered.push(names.replace(names[0], names[0].toUpperCase()));
+  }
+  console.log(nameArray);
+  console.log(namesUppered.join(' '));
+};
+capitalizeName('john aNn smiTh');
+
 /* 
+
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
