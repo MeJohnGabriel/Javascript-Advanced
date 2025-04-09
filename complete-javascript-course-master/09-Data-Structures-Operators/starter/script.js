@@ -142,17 +142,26 @@ console.log(airLine.toUpperCase());
 console.log('john'.toUpperCase());
 
 // Fix passenger name
+// EXERCICSE
 console.log('');
 console.log('Fix passenger name');
 
 const passenger = 'jOnAs';
 const passengerLower = passenger.toLowerCase();
 console.log(passengerLower);
-
 const passengerFormat =
   passengerLower[0].toUpperCase() + passengerLower.slice(1);
 console.log(passengerFormat);
 
+// EXERCICSE CREATING A REAL FUNCTION
+
+const nameFilter = function (passenger) {
+  let passengerName = '';
+  passengerName = passenger.toLowerCase();
+  passengerName = passenger[0].toUpperCase() + passengerName.slice(1);
+  console.log(passengerName);
+};
+nameFilter('jOhN');
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
