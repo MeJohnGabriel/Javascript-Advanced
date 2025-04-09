@@ -144,7 +144,7 @@ console.log('john'.toUpperCase());
 // Fix passenger name
 // EXERCICSE
 console.log('');
-console.log('Fix passenger name');
+console.log('--- Fix passenger name Exercise ---');
 
 const passenger = 'jOnAs';
 const passengerLower = passenger.toLowerCase();
@@ -162,6 +162,71 @@ const nameFilter = function (passenger) {
   console.log(passengerName);
 };
 nameFilter('jOhN');
+
+//Comparing Emails Exercise
+
+console.log('--- Comparing Emails Exercise ---');
+
+const email = 'john@git.io';
+const HypotheticalloginEmail = '  joHN@GIT.IO \n';
+
+// const lowerEmail = HypotheticalloginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+const correctFormatEmail = HypotheticalloginEmail.toLowerCase().trim();
+console.log(correctFormatEmail);
+// console.log(correctFormatEmail === email);
+
+// EXERCISE WITH A FUNCTION
+
+const properlyFormatted = function (e_mail) {
+  let email = '';
+  const emailFiltered = e_mail.toLowerCase().trim();
+  let equalEmail =
+    e_mail === emailFiltered
+      ? 'Email was properly formated'
+      : `[${e_mail}] E-mail was NOT properly formated,[USE]: ${emailFiltered}`;
+  console.log(equalEmail);
+};
+properlyFormatted('JoN@gmail.cOM');
+
+// replacing a string
+const priceBr = 'R$290,10';
+const priceUS = priceBr.replace('R$', '$').replace(',', '.');
+console.log(priceUS);
+
+const annoucement =
+  'All passengers come to boarding door 23, Boarding door 23!';
+
+console.log(annoucement.replace('door', 'gate'));
+console.log(annoucement.replaceAll('door', 'gate'));
+
+// Booleans
+const airplane = 'Airbus A320neo';
+console.log(airplane.includes('A320'));
+console.log(airplane.includes('Boeing'));
+console.log(airplane.startsWith('Air'));
+
+// We want to check if a plane is part of the new airbus family
+if (airplane.startsWith('Air') && airplane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+// practice exercise - check bag is allowed on the check in
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('gun') || baggage.includes('knife')) {
+    console.log('Sorry sir, you can not enter the plane');
+  } else {
+    console.log('You are free to go');
+  }
+};
+
+checkBaggage('I got a laptop and a Pocket Knife');
+checkBaggage('I got socks and a camera');
+checkBaggage('I got a gun');
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
