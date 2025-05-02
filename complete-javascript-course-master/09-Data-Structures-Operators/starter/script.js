@@ -228,7 +228,7 @@ const checkBaggage = function (items) {
 checkBaggage('I got a laptop and a Pocket Knife');
 checkBaggage('I got socks and a camera');
 checkBaggage('I got a gun');
-*/
+
 
 // Split method
 
@@ -254,6 +254,55 @@ const capitalizeName = function (name) {
   console.log(namesUppered.join(' '));
 };
 capitalizeName('john aNn smiTh');
+
+// Paddding
+
+const message = 'Go to gate 23';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  // const nToStr = number + '';
+  const nToStr = String(number);
+  const last = nToStr.slice(-4);
+
+  return last.padStart(nToStr.length, '*');
+};
+
+console.log(maskCreditCard(3323322122349900));
+console.log(maskCreditCard(310489123));
+console.log(maskCreditCard('33233221223421220'));
+
+// Repeat
+const message2 = 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'<[Ï]>'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(2);
+planesInLine(12);
+*/
+///CHALLENGE #04
+
+// underscore_case ---> underscoreCase
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const text = document.querySelector('textarea').value;
+
+const toCamelCase = function (name) {
+  const nameStr = String(name).toLowerCase();
+  const nameFitlter1 = nameStr.slice(0, nameStr.indexOf('_'));
+  const nameFitlter2 = nameStr.slice(nameStr.lastIndexOf('_'));
+
+  const res = nameFitlter1 + nameFitlter2;
+
+  return res;
+};
+
+console.log(toCamelCase(' underscore_case'));
 
 /* 
 
