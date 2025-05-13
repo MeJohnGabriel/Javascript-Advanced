@@ -286,23 +286,49 @@ planesInLine(12);
 */
 ///CHALLENGE #04
 
-// underscore_case ---> underscoreCase
+/*underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅ */
+
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-const text = document.querySelector('textarea').value;
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
 
-const toCamelCase = function (name) {
-  const nameStr = String(name).toLowerCase();
-  const nameFitlter1 = nameStr.slice(0, nameStr.indexOf('_'));
-  const nameFitlter2 = nameStr.slice(nameStr.lastIndexOf('_'));
+  for (const [i, words] of rows.entries()) {
+    const [first, second] = words.toLowerCase().trim().split('_');
+    console.log(first, second);
+    const outPut = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${outPut.padEnd(20, ' ')}${'✅'.repeat(i + 1)}`);
+  }
+});
+// const text = document.querySelector('textarea').value;
 
-  const res = nameFitlter1 + nameFitlter2;
+// const toCamelCase = function (name) {
+//   const nameStr = String(name).toLowerCase();
+//   const nameFitlter1 = nameStr.slice(0, nameStr.indexOf('_'));
+//   const nameFitlter2 = nameStr.slice(nameStr.indexOf('_') + 1);
 
-  return res;
-};
+//   const res =
+//     nameFitlter1 + nameFitlter2[0].toUpperCase() + nameFitlter2.slice(1);
+//   return res;
+// };
 
-console.log(toCamelCase(' underscore_case'));
+// console.log(toCamelCase('JAVAscRipt_Best'));
 
 /* 
 
