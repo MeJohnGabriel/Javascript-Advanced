@@ -17,9 +17,6 @@
 
 // Data needed for a later exercise
 
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // Data needed for first part of the section
 const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
@@ -284,9 +281,50 @@ planesInLine(5);
 planesInLine(2);
 planesInLine(12);
 */
-///CHALLENGE #04
 
-/*underscore_case
+// >>>>> String methods practice]
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+const flightStr = str => str.toUpperCase().slice(0, 3);
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  console.log(flight.split(';'));
+  // const niceStr = `${type.startsWith('_Delayed') ? '🔴' : ''}${type
+  //   .replaceAll('_', ' ')
+  // CORRECTION PADSTART
+  //   .padStart(20, ' ')} from ${flightStr(from)} to ${flightStr(
+  //   to
+  // )} (${time.replace(':', 'h')})`;
+  const niceStr = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${flightStr(from)} to ${flightStr(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(45, '>');
+
+  console.log(niceStr);
+
+  // if (type.includes('Delayed')) {
+  //   console.log(`🔴${niceStr}`);
+  // } else {
+  //   console.log(niceStr);
+  // }
+
+  const test = type.includes('Delayed');
+
+  // console.log(niceStr);
+}
+/*>>>>>>> CHALLENGE #04
+
+underscore_case
  first_name
 Some_Variable 
   calculate_AGE
@@ -297,7 +335,7 @@ underscoreCase      ✅
 firstName           ✅✅
 someVariable        ✅✅✅
 calculateAge        ✅✅✅✅
-delayedDeparture    ✅✅✅✅✅ */
+delayedDeparture    ✅✅✅✅✅
 
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
@@ -316,6 +354,7 @@ document.querySelector('button').addEventListener('click', function () {
     console.log(`${outPut.padEnd(20, ' ')}${'✅'.repeat(i + 1)}`);
   }
 });
+ */
 // const text = document.querySelector('textarea').value;
 
 // const toCamelCase = function (name) {

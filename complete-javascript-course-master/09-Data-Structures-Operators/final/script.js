@@ -750,7 +750,7 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 ///////////////////////////////////////
 // Rest Pattern and Parameters
 // 1) Destructuring
-
+6 
 // SPREAD, because on RIGHT side of =
 const arr = [1, 2, ...[3, 4]];
 
