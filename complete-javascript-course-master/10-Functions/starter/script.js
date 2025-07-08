@@ -230,6 +230,8 @@ BONUS TEST DATA 1: [5, 2, 3]
 BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀 */
+
+/*
 const poll = {
   question: 'What is your favorite programming language?',
   options: ['0: Javascript', '1: Python', '2:Rust', '3: C++'],
@@ -248,13 +250,14 @@ const poll = {
       option >= 0 &&
       option < this.answers.length
       // we could've used short circuitng
-      /*typeof option === number && option < this.answers.length && <- from here, if everythign is true do this: this.answers[option]++;  */
+      typeof option === number && option < this.answers.length && <- from here, if everythign is true do this: this.answers[option]++;  
     ) {
       this.answers[option]++;
     } else {
       alert('Please, insert a valid option');
     }
   },
+   
 
   displayResults(type = 'array') {
     if (type === 'string') {
@@ -277,3 +280,88 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 console.log(poll.answers);
 // [5, 2, 3]
 // [1, 5, 3, 9, 6, 1];
+
+
+// Immediatly Invoked Funtions
+
+// IIFE
+(function () {
+  console.log(`This will never run again`);
+  const isPrivate = 23;
+})();
+
+(() => console.log(`This will also never run again`))();
+
+
+// CLOSURES
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+// see the closure
+console.dir(booker);
+
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+//Re-assign f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// If it wasn't for the closure js'd use this perGroup
+// (and not the one in the function), but closure is a priority
+const perGroup = 10000;
+boardPassengers(180, 3);
+
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.body.addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+*/
