@@ -83,12 +83,15 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce(
+const calcDisplayBalance = function (account) {
+  // making total of money dynamically
+  account.balance = account.movements.reduce(
     (acc, currentMovement) => acc + currentMovement,
     0
   );
-  labelBalance.textContent = `${balance} BRL`;
+  // account.balance = balance;
+
+  labelBalance.textContent = `${account.balance} BRL`;
 };
 
 const calcDisplaySummary = function (account) {
@@ -132,9 +135,17 @@ const createUsernames = function (accountsArr) {
 createUsernames(accounts);
 console.log(accounts);
 
-// Envent handler
-let currentAccount;
+const updateUI = function (account) {
+  // Display movements
+  displayMovements(account.movements);
+  // Display balance
+  calcDisplayBalance(currentAccount);
+  // Display summary
+  calcDisplaySummary(currentAccount);
+};
 
+let currentAccount;
+// Envent handler | Login function, data is being collected dynamically
 btnLogin.addEventListener('click', function (e) {
   //prevent form from submitting
   e.preventDefault();
@@ -154,13 +165,34 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display summary
-    calcDisplaySummary(currentAccount);
+    // Update UI
+    updateUI(currentAccount);
   }
+});
+
+// Implement Transfer
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    curAcc => curAcc.username === inputTransferTo.value
+  );
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    updateUI(currentAccount);
+  }
+
+  // Clearing out inputs
+  inputTransferAmount.value = inputTransferTo.value = '';
 });
 
 //////////
