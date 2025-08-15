@@ -777,8 +777,8 @@ console.log(movements);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 console.log(movements);
 
-const groupedMovs = Object.groupBy(, movement =>
-  movement > 0 ? 'deposits' : 'withdrawals'movements
+const groupedMovs = Object.groupBy(movements, movement =>
+  movement > 0 ? 'deposits' : 'withdrawals'
 );
 console.log(groupedMovs);
 
@@ -840,7 +840,7 @@ console.log(reverseMov);
 console.log(movements);
 
 // toSorted
-
+*/
 
 // ARRAYS PRACTICE
 
@@ -861,130 +861,5 @@ console.log(numDepos1000);
 // 2.1
 const numDepos1000_2 = accounts
   .flatMap(curAcc => curAcc.movements)
-  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
 console.log(numDepos1000_2);
-
-// Prefixed ++ operator
-let a = 10;
-console.log(++a);
-console.log(a);
-
-// 3
-const { deposits, withdrawals } = accounts
-  .flatMap(curAcc => curAcc.movements)
-  .reduce(
-    (sum, cur) => {
-      // cur > 0 ? (sum.deposits += cur) : (sum.withdrawals += cur);
-      sum[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
-      return sum;
-    },
-    { deposits: 0, withdrawals: 0 }
-  );
-console.log(deposits, withdrawals);
-
-//4
-// this is a nice tittte -> This Is a Nice Tittle
-const convertTittleCase = function (tittle) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
-  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
-
-  const tittleCase = tittle
-    .toLowerCase()
-    .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
-    .join(' ');
-  return capitalize(tittleCase);
-};
-
-console.log(convertTittleCase('this is a nice tittle'));
-console.log(convertTittleCase('this is a LONG tittle but not too long'));
-console.log(convertTittleCase('and here is another tittle with an EXAMPLE'));
-*/
-const dogs = [
-  { weight: 22, curFood: 284, owners: ['Alice', 'Bob'] },
-  { weight: 8, curFood: 200, owners: ['Matilda'] },
-  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 15, curFood: 244, owners: ['Carl', 'Joseph', 'Joe'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] },
-];
-
-// 1
-console.log(`----DOGS VIEW-----`);
-const recFoodResult = dogs.forEach(curDog => {
-  console.log(curDog);
-  return (curDog.recFood = Math.floor(curDog.weight ** 0.75 * 28));
-});
-console.log(dogs);
-
-// 2 JONAS SOLUTION
-// const sarahDog2 = dogs.find(dogs => dogs.owners.includes('Sarah'));
-// console.log(
-//   `Sarah's dog eats ${
-//     sarahDog2.curFood > sarahDog2.recFood ? 'too-much' : 'too-little'
-//   }`
-// );
-//2
-const sarahDog = dogs.forEach(curDog => {
-  if (curDog.owners.includes('Sarah') && curDog.curFood > curDog.recFood) {
-    console.log(`Sarah's dog is eating too much`);
-  }
-});
-
-//3
-const dogsEatTooMuch = dogs
-  .filter(curDog => curDog.curFood > curDog.recFood)
-  .flatMap(curDogOwner => curDogOwner.owners)
-  .join(' and ');
-
-const dogsEatTooLitttle = dogs
-  .filter(curDog => curDog.curFood < curDog.recFood)
-  .flatMap(curDogOwner => curDogOwner.owners)
-  .join(' and ');
-// 4
-console.log(`${dogsEatTooMuch}'s dog eat too much`);
-console.log(`${dogsEatTooLitttle}'s dog eat too little`);
-
-// 5
-const exactFood = dogs.some(curDog => curDog.curFood == curDog.recFood);
-console.log(exactFood);
-
-// 6
-const eatingRange = dogs =>
-  dogs.curFood > dogs.recFood * 0.9 && dogs.curFood < dogs.recFood * 1.1;
-
-const atLeastFood = dogs.every(eatingRange);
-console.log(atLeastFood);
-
-//7
-const okFood = dogs.filter(eatingRange);
-console.log(okFood);
-
-//8
-const dogsGroupedFood = Object.groupBy(dogs, curDog => {
-  if (curDog.curFood > curDog.recFood) return 'too-much';
-  if (curDog.curFood < curDog.recFood) return 'too-little';
-  if (curDog.curFood == curDog.recFood) return 'exact';
-});
-console.log(dogsGroupedFood);
-
-//9
-const dogsGroupedOwners = Object.groupBy(dogs, currentDog => {
-  if (currentDog.owners.length > 1)
-    return `Dogs that have: ${currentDog.owners.length} owners`;
-  if (currentDog.owners.length == 1)
-    return `Dogs that have ONLY ${currentDog.owners.length} owner`;
-});
-console.log(dogsGroupedOwners);
-
-//JONAS:  const dogsGroupedByOwners = Object.groupBy(
-//   dogs,
-//   dog => `${dog.owners.length}-owners`
-// );
-// console.log(dogsGroupedByOwners);
-
-//10
-const foodSorted = dogs.map(dogs => dogs.recFood).sort((a, b) => a - b);
-
-const foodSorted2 = dogs.toSorted((a, b) => a.recFood - b.recFood);
-console.log(foodSorted);
-console.log(foodSorted2);
